@@ -6,7 +6,7 @@ class NetworkError extends Error {
     }
 
     validateNetworkConn() {
-        if (Math.Floor((Math.Random()*8)+1 > 5)){
+        if (Math.Floor((Math.Random()*8))+1 > 5) {
             throw new NetworkError("Failed to connect;  404 url not found.");
         }
     }
