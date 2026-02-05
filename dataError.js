@@ -3,4 +3,10 @@ class DataError extends Error {
         super(message);
         this.name = "NetworkError";
     }
+
+    hasEmptyFields(a){ 
+        if ( a.length === 0 ){
+            throw new DataError("The data fields can't be empty.");
+        }
+    }
 }
