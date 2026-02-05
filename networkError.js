@@ -11,4 +11,9 @@ class NetworkError extends Error {
         }
     }
 
+    validateNetworkAccess(){
+        if (Math.Floor((Math.Random()*8)+1) > 5){
+            throw new NetworkError("Failed to connect;  401 unauthorized.");
+        }
+    }
 }
