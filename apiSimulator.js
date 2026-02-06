@@ -36,6 +36,7 @@ export function fetchProductCatalog() {
 
         resolve(review);
       } else {
+        reject(hasEmptyFields(review));
         reject(`Failed to fetch reviews for product ID ${id}`);
       }
     }, 1500);

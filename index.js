@@ -1,5 +1,6 @@
 import { fetchProductCatalog, fetchProductReviews, fetchSalesReport } from "./apiSimulator.js";
 import { NetworkError } from "./networkError.js";
+import { DataError } from "./dataError.js";
  fetchProductCatalog() // returns a promise object
     .then((productCatalog) => {
         console.log('Product ' + productCatalog[0].id + ':')
@@ -21,7 +22,14 @@ import { NetworkError } from "./networkError.js";
         console.log(productReviews)
         return fetchSalesReport() // returns a promise object
     })
-    .catch((error) => console.error("Error:", error))
+    .catch((error) => { 
+        if (error instanceof DataError) {
+            console.log("Data Error was found.");
+            console.error("DataError: ", error.message);
+        } else if (error instanceof Error) {
+             console.error("UnknownError: ", error.message);
+        }
+    })
     .then((salesReport) => {
         console.log('Sales Report:')
         console.log(salesReport)
