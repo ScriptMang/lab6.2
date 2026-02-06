@@ -1,12 +1,18 @@
 import { fetchProductCatalog, fetchProductReviews, fetchSalesReport } from "./apiSimulator.js";
+import { NetworkError } from "./networkError.js";
  fetchProductCatalog() // returns a promise object
     .then((productCatalog) => {
         console.log('Product ' + productCatalog[0].id + ':')
         console.log(productCatalog)
         return fetchProductReviews(productCatalog[0].id);// returns a promise object
     })
-    .catch((error) => console.error("Error:", error))
-    .then((productReviews) => {
+    .catch((error) => { 
+        if (error instanceof NetworkError) {
+            console.erorr("NetworkError: ", error.message);
+        } else if (error instanceof Error) {
+             console.error("UnknownError: ", error.message);
+        }
+    }).then((productReviews) => {
         if(productReviews.length === 0){
             console.log("Review array is empty");
         }

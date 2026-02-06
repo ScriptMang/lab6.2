@@ -1,6 +1,8 @@
+import {NetworkError} from './networkError.js';
 export function fetchProductCatalog() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+       NetworkError.validateNetworkConn();
       if (Math.random() < 0.8) {
         resolve([
           { id: 1, name: "Laptop", price: 1200 },
