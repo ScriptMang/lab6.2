@@ -8,7 +8,7 @@ import { NetworkError } from "./networkError.js";
     })
     .catch((error) => { 
         if (error instanceof NetworkError) {
-            console.erorr("NetworkError: ", error.message);
+            console.error("NetworkError: ", error.message);
         } else if (error instanceof Error) {
              console.error("UnknownError: ", error.message);
         }

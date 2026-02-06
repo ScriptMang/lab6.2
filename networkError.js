@@ -4,8 +4,8 @@ export class NetworkError extends Error {
         this.name = "NetworkError";
     }
 
-    validateNetworkConn() {
-        if (Math.Floor((Math.Random()*8))+1 > 5) {
+    static validateNetworkConn() {
+        if (Math.floor((Math.random()*8))+1 > 5) {
             throw new NetworkError("Failed to connect to url; 404, url not found.");
         }
     }
