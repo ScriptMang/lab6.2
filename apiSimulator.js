@@ -8,8 +8,14 @@ export function fetchProductCatalog() {
           { id: 2, name: "Headphones", price: 200 },
         ]);
       } else if (Math.random() < 0.6){
-        console.log("Print statement preceding the network error check");
-         reject(NetworkError.validateNetworkConn());
+
+        if (Math.random() < 0.5) {
+            console.log("Print statement preceding the bad url network error");
+            reject(NetworkError.validateNetworkConn());
+        } else {
+          console.log("Print statement preceding the not authoirzed network error");
+          reject(NetworkError.validateNetworkAccess());
+        }
       } else {
         reject("Failed to fetch product catalog");
       }
