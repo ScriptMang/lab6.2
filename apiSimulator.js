@@ -2,12 +2,14 @@ import {NetworkError} from './networkError.js';
 export function fetchProductCatalog() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-       NetworkError.validateNetworkConn();
-      if (Math.random() < 0.8) {
+      if (Math.random() < 0.5) {
         resolve([
           { id: 1, name: "Laptop", price: 1200 },
           { id: 2, name: "Headphones", price: 200 },
         ]);
+      } else if (Math.random() < 0.6){
+        console.log("Print statement preceding the network error check");
+         reject(NetworkError.validateNetworkConn());
       } else {
         reject("Failed to fetch product catalog");
       }
